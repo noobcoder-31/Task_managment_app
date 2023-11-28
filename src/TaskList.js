@@ -70,43 +70,53 @@ const TaskList = () => {
         </button>
       </div>
       <ul className="list-disc mt-6 pl-4">
-        {tasks.map((task) => (
-          <li key={task.id} className="flex  text-lg my-3 justify-between mb-2">
-            <div className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => handleCheckboxChange(task.id)}
-                className="mr-2"
-              />
-              <Link
-                to={{
-                  pathname: `/task-details/${task?.id}`,
-                }}
-                className={`cursor-pointer ${
-                  task.completed ? "line-through text-gray-500" : "text-black"
-                }`}
-              >
-                {task.name}
-              </Link>
-            </div>
+        {tasks.size > 0 ? (
+          tasks.map((task) => (
+            <li
+              key={task.id}
+              className="flex  text-lg my-3 justify-between mb-2"
+            >
+              <div className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={task.completed}
+                  onChange={() => handleCheckboxChange(task.id)}
+                  className="mr-2"
+                />
+                <Link
+                  to={{
+                    pathname: `/task-details/${task?.id}`,
+                  }}
+                  className={`cursor-pointer ${
+                    task.completed ? "line-through text-gray-500" : "text-black"
+                  }`}
+                >
+                  {task.name}
+                </Link>
+              </div>
 
-            <div className="flex items-center space-x-2">
-              <span className="text-gray-700 mx-auto mr-14">
-                {task.priority}
-              </span>
-              <button
-                onClick={() => handleDeleteTask(task.id)}
-                className="text-red-500"
-              >
-                <i className="fas fa-trash-alt"></i>
-              </button>
-              <Link to={`/edit-task/${task.id}`} className="text-blue-500">
-                <i className="fas fa-edit"></i>
-              </Link>
-            </div>
-          </li>
-        ))}
+              <div className="flex items-center space-x-2">
+                <span className="text-gray-700 mx-auto mr-14">
+                  {task.priority}
+                </span>
+                <button
+                  onClick={() => handleDeleteTask(task.id)}
+                  className="text-red-500"
+                >
+                  <i className="fas fa-trash-alt"></i>
+                </button>
+                <Link to={`/edit-task/${task.id}`} className="text-blue-500">
+                  <i className="fas fa-edit"></i>
+                </Link>
+              </div>
+            </li>
+          ))
+        ) : (
+          <div className="text-xl text-red-400 font-bold">
+            {" "}
+            Nothing Found!! Please add Tasks{" "}
+          </div>
+        )}
       </ul>
     </div>
   );
