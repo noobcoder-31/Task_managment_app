@@ -5,7 +5,6 @@ const TaskDetails = () => {
   const { id } = useParams();
   const tasks = JSON.parse(localStorage.getItem("tasks"));
 
-  // Convert taskid to a number (assuming task.id is a number)
   const taskId = id * 1;
   const task = tasks.find((task) => task.id === taskId);
 

@@ -21,18 +21,16 @@ const EditTask = () => {
       return;
     }
 
-    const taskId = id * 1; /* provide the ID of the task you want to edit */
+    const taskId = id * 1;
     const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-    // Find the index of the task with the given ID
     const taskIndex = storedTasks.findIndex((task) => task.id === taskId);
 
     if (taskIndex === -1) {
-      alert("Task not found!"); // Handle the case where the task is not found
+      alert("Task not found!");
       return;
     }
 
-    // Update the existing task with the new values
     const updatedTasks = [...storedTasks];
     updatedTasks[taskIndex] = {
       ...updatedTasks[taskIndex],
@@ -41,10 +39,8 @@ const EditTask = () => {
       priority,
     };
 
-    // Store the updated tasks in localStorage
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
 
-    // Redirect or navigate to the desired location (e.g., home page)
     navigate("/");
   };
 
